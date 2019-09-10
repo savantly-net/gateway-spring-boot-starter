@@ -1,0 +1,98 @@
+buildscript {
+	ext {
+        springBootVersion = '2.1.8.RELEASE'
+    }
+     repositories {
+         jcenter()
+     }
+     dependencies {
+         classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+     }
+ }
+
+plugins {
+	id 'org.springframework.boot' version "${springBootVersion}" apply false
+	id 'java'
+	id 'eclipse-wtp'
+}
+
+apply plugin: 'java-library'
+apply plugin: 'maven-publish'
+apply plugin: 'com.bmuschko.nexus'
+apply plugin: 'io.spring.dependency-management'
+
+
+group = 'net.savantly'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
+signing {
+	required { isReleaseVersion && gradle.taskGraph.hasTask("uploadArchives") }
+    useGpgCmd()
+}
+
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR2"
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
+}
+
+dependencies {
+	implementation 'org.springframework.cloud:spring-cloud-gateway-mvc'
+	
+	annotationProcessor "org.springframework.boot:spring-boot-autoconfigure-processor"
+	
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-web'
+}
+
+ modifyPom {
+     project {
+         inceptionYear '2019'
+            description 'Autoconfiguration of a gateway/proxy for a Spring Boot app'
+            name 'Gateway Spring Boot Starter'
+            url 'https://github.com/savantly-net/gateway-spring-boot-starter'
+            organization {
+                name 'net.savantly'
+                url 'https://github.com/savantly-net/'
+            }
+            issueManagement {
+                system 'GitHub'
+                url 'https://github.com/savantly-net/gateway-spring-boot-starter/issues'
+            }
+            licenses {
+                license {
+                    name 'Apache License 2.0'
+                    url 'https://github.com/savantly-net/gateway-spring-boot-starter/blob/master/LICENSE'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url 'https://github.com/savantly-net/gateway-spring-boot-starter'
+                connection 'scm:git:git://github.com/savantly-net/gateway-spring-boot-starter.git'
+                developerConnection 'scm:git:ssh://git@github.com:savantly-net/gateway-spring-boot-starter.git'
+            }
+            developers {
+                developer {
+                    name 'Jeremy Branham'
+                }
+            }
+     }
+ }
+ 
