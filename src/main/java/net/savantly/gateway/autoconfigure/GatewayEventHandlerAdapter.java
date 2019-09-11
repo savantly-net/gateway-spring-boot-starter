@@ -41,38 +41,38 @@ public class GatewayEventHandlerAdapter implements GatewayEventHandler<byte[]> {
 	}
 
 	@Override
-	public ResponseEntity afterGet(String child, ResponseEntity<byte[]> proxy) throws Exception {
-		return proxy;
+	public ResponseEntity afterGet(String child, ResponseEntity<byte[]> response) throws Exception {
+		return response;
 	}
 
 	@Override
-	public ResponseEntity afterPost(String child, ResponseEntity<byte[]> proxy) throws Exception {
-		return proxy;
+	public ResponseEntity afterPost(String child, ResponseEntity<byte[]> response) throws Exception {
+		return response;
 	}
 
 	@Override
-	public ResponseEntity afterPut(String child, ResponseEntity<byte[]> proxy) throws Exception {
-		return proxy;
+	public ResponseEntity afterPut(String child, ResponseEntity<byte[]> response) throws Exception {
+		return response;
 	}
 
 	@Override
-	public ResponseEntity afterOptions(String child, ResponseEntity<byte[]> proxy) throws Exception {
-		return proxy;
+	public ResponseEntity afterOptions(String child, ResponseEntity<byte[]> response) throws Exception {
+		return response;
 	}
 
 	@Override
-	public ResponseEntity afterPatch(String child, ResponseEntity<byte[]> proxy) throws Exception {
-		return proxy;
+	public ResponseEntity afterPatch(String child, ResponseEntity<byte[]> response) throws Exception {
+		return response;
 	}
 
 	@Override
-	public ResponseEntity afterDelete(String child, ResponseEntity<byte[]> proxy) throws Exception {
-		return proxy;
+	public ResponseEntity afterDelete(String child, ResponseEntity<byte[]> response) throws Exception {
+		return response;
 	}
 
 	@Override
-	public ResponseEntity afterHead(String child, ResponseEntity<byte[]> proxy) throws Exception {
-		return proxy;
+	public ResponseEntity afterHead(String child, ResponseEntity<byte[]> response) throws Exception {
+		return response;
 	}
 
 }

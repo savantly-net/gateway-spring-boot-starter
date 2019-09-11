@@ -19,18 +19,18 @@ public interface GatewayEventHandler<T> {
 
 	ResponseEntity<T> onHead(String child, ProxyExchange<T> proxy) throws Exception;
 	
-	ResponseEntity<T> afterGet(String child, ResponseEntity<T> proxy) throws Exception;
+	ResponseEntity<T> afterGet(String child, ResponseEntity<T> response) throws Exception;
 
-	ResponseEntity<T> afterPost(String child, ResponseEntity<T> proxy) throws Exception;
+	ResponseEntity<T> afterPost(String child, ResponseEntity<T> response) throws Exception;
 
-	ResponseEntity<T> afterPut(String child, ResponseEntity<T> proxy) throws Exception;
+	ResponseEntity<T> afterPut(String child, ResponseEntity<T> response) throws Exception;
 
-	ResponseEntity<T> afterOptions(String child, ResponseEntity<T> proxy) throws Exception;
+	ResponseEntity<T> afterOptions(String child, ResponseEntity<T> response) throws Exception;
 
-	ResponseEntity<T> afterPatch(String child, ResponseEntity<T> proxy) throws Exception;
+	ResponseEntity<T> afterPatch(String child, ResponseEntity<T> response) throws Exception;
 
-	ResponseEntity<T> afterDelete(String child, ResponseEntity<T> proxy) throws Exception;
+	ResponseEntity<T> afterDelete(String child, ResponseEntity<T> response) throws Exception;
 
-	ResponseEntity<T> afterHead(String child, ResponseEntity<T> proxy) throws Exception;
+	ResponseEntity<T> afterHead(String child, ResponseEntity<T> response) throws Exception;
 
 }
