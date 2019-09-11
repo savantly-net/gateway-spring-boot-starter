@@ -21,7 +21,7 @@ public class GatewayAutoConfigurationTests {
 	public void gatewayCanBeDisabled() {
 		this.contextRunner.withPropertyValues("gateway.enabled=false").run((context) -> {
 			assertThat(context).doesNotHaveBean(GatewayAutoConfiguration.class);
-			assertThat(context).doesNotHaveBean(Gateway.class);
+			assertThat(context).doesNotHaveBean(SimpleGateway.class);
 			assertThat(context).doesNotHaveBean(GatewayProperties.class);
 		});
 	}
@@ -30,7 +30,7 @@ public class GatewayAutoConfigurationTests {
 	public void gatewayIsEnabled() {
 		this.contextRunner.withInitializer(new ConfigFileApplicationContextInitializer()).run((context) -> {
 			assertThat(context).hasSingleBean(GatewayAutoConfiguration.class);
-			assertThat(context).hasSingleBean(Gateway.class);
+			assertThat(context).hasSingleBean(SimpleGateway.class);
 			assertThat(context).hasSingleBean(GatewayProperties.class);
 			GatewayProperties gatewayProperties = context.getBean(GatewayProperties.class);
 			assertThat(gatewayProperties.getRoutes().size()).isGreaterThan(0);

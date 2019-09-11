@@ -1,5 +1,6 @@
 package net.savantly.gateway.autoconfigure;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -13,7 +14,14 @@ import org.springframework.context.annotation.Configuration;
 public class GatewayAutoConfiguration {
 	
 	@Bean
-	public Gateway gateway(GatewayProperties config) {
-		return new Gateway(config);
+	@ConditionalOnMissingBean
+	public Gateway gateway(GatewayProperties config, GatewayEventHandler eventHandler) {
+		return new SimpleGateway(config, eventHandler);
+	}
+	
+	@Bean
+	@ConditionalOnMissingBean
+	public GatewayEventHandler eventHandler() {
+		return new GatewayEventHandlerAdapter();
 	}
 }
