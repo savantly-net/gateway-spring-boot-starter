@@ -12,12 +12,12 @@ It provides a transparent proxy to any web backend
 <dependency>
   <groupId>net.savantly</groupId>
   <artifactId>gateway-spring-boot-starter</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
 </dependency>
 ```
 
 ### Gradle
-`compile 'net.savantly:gateway-spring-boot-starter:0.0.1-SNAPSHOT'`
+`compile 'net.savantly:gateway-spring-boot-starter:0.0.2-SNAPSHOT'`
 
 ### Snapshot releases  
 ```
