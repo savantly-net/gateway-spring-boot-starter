@@ -30,6 +30,11 @@ public class SimpleGateway implements Gateway<byte[]> {
 		this.eventHandler = eventHandler;
 	}
 	
+	@GetMapping("/")
+	public String imok() {
+		return "imok";
+	}
+	
 	@Override
 	@GetMapping("/{child}/**")
 	public ResponseEntity<byte[]> get(@PathVariable String child, ProxyExchange<byte[]> proxy) throws Exception {
@@ -119,9 +124,13 @@ public class SimpleGateway implements Gateway<byte[]> {
 	}
 	
 	private String getDestinationPath(String child, ProxyExchange<byte[]> proxy) {
+		log.debug("getting route config for {}", child);
 		String destination = this.config.getRoutes().get(child);
+		log.debug("found destination: {}", destination);
 		String path = proxy.path(String.format("%s/%s", PATH, child));
 		log.debug("with prefix removed: {}", path);
-		return String.format("%s%s", destination, path);
+		String uriString = String.format("%s%s", destination, path);
+		log.debug("full redirect uri: {}", uriString);
+		return uriString;
 	}
 }

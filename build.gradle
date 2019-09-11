@@ -23,7 +23,7 @@ apply plugin: 'io.spring.dependency-management'
 
 
 group = 'net.savantly'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
